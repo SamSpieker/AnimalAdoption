@@ -1,45 +1,38 @@
 <?php
-echo'Hello';
-// Check if form is submitted
-// if ($_SERVER["REQUEST_METHOD"] == "POST") {
-//     // Retrieve data from form
-//     $id = $_POST['id'];
-//     $updates = $_POST['updates']; // An associative array of field names and new values
 
-//     // Prepare update statement
-//     $sql = "UPDATE Dogtable SET ";
+include "header.php";
+include "connect.php";
 
-//     // Generate placeholders for each field
-//     $fields = array_keys($updates);
-//     $placeholders = array_map(function ($field) {
-//         return "$field = ?";
-//     }, $fields);
-//     $sql .= implode(", ", $placeholders);
-//     $sql .= " WHERE id = ?";
+//Check if form is submitted
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
-//     // Prepare and bind parameters
-//     $stmt = $conn->prepare($sql);
-
-//     // Generate types string for bind_param
-//     $types = str_repeat("s", count($fields)) . "i";
-//     $bindParams = array_merge([$types], array_values($updates), [$id]);
-
-//     // Bind parameters dynamically
-//     call_user_func_array(array($stmt, 'bind_param'), $bindParams);
-
-//     // Execute the update
-//     if ($stmt->execute()) {
-//         echo "Record updated successfully";
-//     } else {
-//         echo "Error updating record: " . $conn->error;
-//     }
-
-//     // Close statement
-//     $stmt->close();
-// }
-
-// // Close connection
-// $conn->close();
-?>
+    // Retrieve data from form
+    $id = $_GET['id'];
+    $name = $_POST['name'];
+    $breed = $_POST['breed'];
+    $sex = $_POST['sex'];
+    $age = $_POST['age'];
+    $color = $_POST['color'];
+    $size = $_POST['size'];
+    $description = $_POST['description'];
+    $medicalInfo = $_POST['medicalInfo'];
 
 
+    $sql = "update Dogtable
+    set DogName = '$name', DogBreed = '$breed', DogSex = '$sex', DogAge = $age, DogColor = '$color',
+    DogSize = '$size', DogDescription = '$description', DogMedical = '$medicalInfo'
+    where DogID = $id;";
+
+    if (mysqli_query($database, $sql)) {
+        header("Location: manageDogs.php");
+    } else {
+        echo "
+        <h1>Error saving record</h1>
+        <p>Please return to the previous page</p>
+        <a href='editDog.php?id=$id'><button class='btn btn-primary'>Return</button></a>
+
+        ";
+    }
+}
+
+include "footer.php";
