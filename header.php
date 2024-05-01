@@ -29,6 +29,10 @@
                             echo '<li class="nav-item">
                                             <a class="nav-link" href="doglist.php">Dog List</a>
                                         </li>';
+                            echo '<li class="nav-item">
+                                            <a class="nav-link" href="messages.php">Messages</a>
+                                        </li>';
+
                         } else {
                             // User is not logged in
                             echo '<li class="nav-item">
