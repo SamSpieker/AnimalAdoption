@@ -33,7 +33,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
          
         if($stmt = mysqli_prepare($database, $sql)){
             // Bind variables to the prepared statement as parameters
-            mysqli_stmt_bind_param($stmt, "issii", $param_user_id, $param_username, $param_email, $param_message_text, $param_user_id);
+            mysqli_stmt_bind_param($stmt, "isssi", $param_user_id, $param_username, $param_email, $param_message_text, $param_user_id);
             
             // Set parameters
             $param_user_id = $_SESSION["userID"];
