@@ -8,7 +8,8 @@
 
 <body>
     <?php include 'header.php' ?>
-    <h1>Welcome to my dog page!</h1>
+    <h1>Welcome to Animal Adoption!</h1>
+	<p>This website allows you to browse our selection of animals up for adoption. Login or Register to start!</p>
     <?php
     session_start();
     if (isset($_SESSION['username'])) {
